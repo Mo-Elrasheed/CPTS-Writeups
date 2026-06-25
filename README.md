@@ -11,6 +11,7 @@ This repository serves as a technical knowledge base where I document my methodo
 | Write-up | Category | Platform |
 | :--- | :--- | :--- |
 | [**Pass the Ticket (PtT) Attack**](./HTB-CPTS-Pass-the-Ticket.md)| Kerberos Abuse | HTB CPTS |
+| [**Attacking Common Services - Medium**](./Attacking-Common-Services/Medium-Skill-Assessment.md) | FTP + SSH Chaining | HTB CPTS |
 
 ---
 
